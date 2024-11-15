@@ -72,12 +72,12 @@ git checkout sub
 git add .
 git commit -m "Update example.txt"
 git checkout master
-git merge feature
+git merge sub
 ```
 ![Скриншот слияния веток](screenshots/8.png)
 
 ### Шаг 10: Удаление побочной ветки
-Удалена ветка feature после слияния:
+Удалена ветка sub после слияния:
 
 ```bash
 git branch -d sub
@@ -116,3 +116,74 @@ git branch report
 git checkout report
 ```
 ![Скриншот создания ветки для отчёта](screenshots/12.png)
+
+## Лог команд
+
+Данный лог команд описывает весь процесс выполнения лабораторной работы (LR6): настройку Git, получение изменений с GitHub, коммиты, создание веток, слияние, откат коммитов и отправку изменений на GitHub.
+
+```bash
+# Настройка имени пользователя и email
+git config --global user.name "Tursunov Imran"
+git config --global user.email "tursunov.imran@mail.ru"
+
+# Клонирование форкнутого репозитория
+# Переключение в директорию проекта
+git https://github.com/singl3focus/LR6
+cd Documents/1GithubProjects/LR6
+
+# Получение истории операций для всех веток
+git log --oneline --all
+
+# Просмотр последних изменений
+git log -p -1
+
+# Создание новой ветки
+git branch sub
+
+# Переключение на новую ветку
+git checkout sub
+
+# Внесение изменений, добавление их в индекс и коммит
+git add example.txt
+git commit -m "Update example.txt"
+
+# Переключение обратно на мастер и слияние веток
+git checkout master
+git merge sub
+
+# Удаление побочной ветки после слияния
+git branch -d sub
+
+# Создание еще нескольких коммитов с комментариями
+git status
+git add example.txt
+git commit -m "fix syntax error"
+git status
+git add example.txt
+git commit -m "ref naming"
+
+# Откат последнего коммита
+git revert HEAD
+
+# Создание ветки для отчета и переключение на нее
+git branch report
+git checkout report
+
+# Получение истории операций в отформатированном виде
+git log --pretty=format:"%h %ad | %s%d [%an]" --date=short
+
+# Отправка изменений на удаленный репозиторий
+git push origin report
+```
+
+## История операций
+Получим и напечатаем историю операций. Сделаем это при помощи команды:
+
+```bash
+git log --pretty=format:"%h %ad | %s%d [%an]" --date=short
+```
+Результат выполнения программы:
+![Скриншот создания ветки для отчёта](screenshots/13.png)
+
+## Вывод
+В ходе выполнения лабораторной работы были изучены основные возможности системы контроля версий Git. Получены навыки работы с локальными и удаленными репозиториями, изучен Git Api. создания и слияния веток, разрешения конфликтов и оформления отчета в README.md файле.
